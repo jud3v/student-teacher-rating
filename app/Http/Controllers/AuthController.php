@@ -7,6 +7,7 @@ use App\Utils\HttpUtils;
 use \Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
 {
@@ -25,12 +26,15 @@ class AuthController extends Controller
 
         $this->validate($request,[
             'name' => 'required|string|max:255',
-            'mail' => 'required|max:255|string|unique:users',
+            'email' => 'required|max:255|string|unique:users',
             'password' => 'required|min:4|confirmed',
         ]);
 
         $data = $request->all();
-
+        if (!isset($data['is_student'])){
+            $data['is_student'] = 0;
+        }
+        $data['password'] = Hash::make($data['password']);
         User::create($data);
         return HttpUtils::sendSuccessResponse('The user has been created');
     }
