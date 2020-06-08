@@ -39,7 +39,7 @@ class LanguageController extends Controller
     {
         $data = $request->all();
         $this->repository->create($data);
-        return HttpUtils::sendSuccessResponse('Language name:'. $data['name'].' created');
+        return HttpUtils::sendSuccessResponse('resource created');
     }
 
     /**
@@ -76,6 +76,6 @@ class LanguageController extends Controller
      */
     public function destroy($id)
     {
-        return HttpUtils::sendSuccessResponse($this->repository->delete($id));
+        return HttpUtils::sendSuccessResponse('',$this->repository->delete($id));
     }
 }

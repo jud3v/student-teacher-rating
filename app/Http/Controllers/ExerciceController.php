@@ -38,7 +38,7 @@ class ExerciceController extends Controller
     {
         $data = $request->all();
         $this->repository->create($data);
-        return HttpUtils::sendSuccessResponse('Language name:'. $data['name'].' created');
+        return HttpUtils::sendSuccessResponse('resource created');
     }
 
     /**
