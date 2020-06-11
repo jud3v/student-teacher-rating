@@ -26,6 +26,11 @@ Route::group([
 ], function ($router) {
 
     Route::resource('/languages', 'LanguageController');
+    Route::resource('/users', 'UserController');
+    Route::resource('/courses', 'CourseController');
+    Route::resource('/exercises', 'ExerciceController');
+    Route::resource('/comment', 'CommentController');
+    Route::resource('/ratings', 'RatingController');
 
     Route::post('register','AuthController@register');
     Route::post('login', 'AuthController@login');
