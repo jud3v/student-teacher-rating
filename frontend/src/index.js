@@ -8,11 +8,19 @@ import ScrollToTop from './ScrollToTop';
 import axios from 'axios';
 import jwtDecode from 'jwt-decode';
 
-const check = jwtDecode(localStorage.getItem('token'));
-const dateNow = Date.now();
+if (localStorage.getItem('token')) {
+    const {exp} = jwtDecode(localStorage.getItem('token'));
+    const dateNow = Date.now();
+    if (exp < dateNow / 1000) {
+        localStorage.removeItem('token');
+    } else {
+      setTimeout(() => {
+        localStorage.removeItem('token')
+      }, exp - dateNow / 1000);
+    }
+}
 
 axios.defaults.baseURL = 'http://127.0.0.1:8000/api/'
-
 
 ReactDOM.render(
     <BrowserRouter>

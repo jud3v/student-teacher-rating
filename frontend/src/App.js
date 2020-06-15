@@ -6,9 +6,9 @@ import {AppMenu} from './AppMenu';
 import AppProfile from './AppProfile';
 import {Route} from 'react-router-dom';
 import PrivateRoute from "./components/PrivateRoute";
-import {Dashboard} from './components/Dashboard';
 import Login from './components/Login';
 import Course from "./components/Course";
+import {Dashboard} from "./components/Dashboard";
 import 'primereact/resources/themes/nova-light/theme.css';
 import 'primereact/resources/primereact.min.css';
 import 'primeicons/primeicons.css';
@@ -18,6 +18,7 @@ import '@fullcalendar/daygrid/main.css';
 import '@fullcalendar/timegrid/main.css';
 import './layout/layout.scss';
 import './App.scss';
+import {ProgressBar} from "primereact/progressbar";
 
 class App extends Component {
 
@@ -159,8 +160,8 @@ class App extends Component {
                 </div>
 
                 <div className="layout-main">
-                    <PrivateRoute path="/" exact component={Dashboard} />
                     <PrivateRoute path="/course" exact component={Course}/>
+                    <PrivateRoute path='/dashboard' exact component={Dashboard} />
                     <Route path="/login" exact component={Login} />
                 </div>
 

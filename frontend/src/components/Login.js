@@ -2,6 +2,8 @@ import React from 'react';
 import axios from 'axios';
 import {withRouter,Link} from "react-router-dom";
 import {Growl} from 'primereact/growl';
+import jwtDecode from 'jwt-decode';
+
 
 class Login extends React.Component {
 
@@ -19,9 +21,13 @@ class Login extends React.Component {
     onClickHandler = e => {
         axios.post('login',this.state)
             .then(({data}) => {
-                localStorage.setItem('token',data.token)
-                this.growl.show({severity: 'success', summary: 'Login Success', detail: 'Valid Credentials'});
-                this.props.history.push('/')
+                localStorage.setItem('token',data.token);
+                const check = jwtDecode(localStorage.getItem('token'));
+                setTimeout(() => {
+                    localStorage.removeItem('token');
+                    this.props.history.push('/login')
+                },data.expiration * 60 * 1000)
+                this.props.history.push('/dashboard')
             })
             .catch(() => {
                 this.growl.show({severity: 'error', summary: 'Login Error', detail: 'Invalid Credentials'});

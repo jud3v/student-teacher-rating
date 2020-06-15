@@ -9,6 +9,8 @@ class AppWrapper extends React.Component {
 
     render() {
         switch (this.props.location.pathname) {
+            case '/':
+                return <Login />
             case '/login':
                 return <Login />
             case '/register':
