@@ -384,7 +384,7 @@
       'private' => NULL,
       'passphrase' => NULL,
     ),
-    'ttl' => 1,
+    'ttl' => 120,
     'refresh_ttl' => 20160,
     'algo' => 'HS256',
     'required_claims' => 

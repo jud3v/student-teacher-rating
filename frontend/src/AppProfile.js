@@ -24,7 +24,9 @@ class AppProfile extends Component {
     }
 
     render() {
-        const {name} = jwtDecode(localStorage.getItem('token'))
+
+        const token = localStorage.getItem('token');
+        const name = token ? jwtDecode(token).name : null;
         return  (
             <div className="layout-profile">
                 <button className="p-link layout-profile-link" onClick={this.onClick}>

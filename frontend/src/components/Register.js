@@ -2,6 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import {withRouter,Link} from "react-router-dom";
 import {Password} from 'primereact/password';
+import { loadProgressBar } from "axios-progress-bar";
 
 class Register extends React.Component {
 
@@ -19,6 +20,7 @@ class Register extends React.Component {
     }
 
     onClickHandler = e => {
+        loadProgressBar()
         axios.post('register',this.state)
             .then(() => {
                 this.props.history.push('/login')

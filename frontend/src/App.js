@@ -9,6 +9,7 @@ import PrivateRoute from "./components/PrivateRoute";
 import Login from './components/Login';
 import Course from "./components/Course";
 import {Dashboard} from "./components/Dashboard";
+import {Redirect} from "react-router-dom";
 import 'primereact/resources/themes/nova-light/theme.css';
 import 'primereact/resources/primereact.min.css';
 import 'primeicons/primeicons.css';
@@ -18,7 +19,6 @@ import '@fullcalendar/daygrid/main.css';
 import '@fullcalendar/timegrid/main.css';
 import './layout/layout.scss';
 import './App.scss';
-import {ProgressBar} from "primereact/progressbar";
 
 class App extends Component {
 
@@ -93,7 +93,7 @@ class App extends Component {
             {
                 label: 'Learning', icon: 'pi pi-fw pi-cog',
                 items: [
-                    {label: 'Courses', icon: 'pi pi-fw pi-bars',  command: () => Course },
+                    {label: 'Courses', icon: 'pi pi-fw pi-bars',  to: '/courses' },
                     {label: 'Exercises', icon: 'pi pi-fw pi-bars',  command: () => this.setState({layoutMode: 'overlay'}) }
                 ]
             },
@@ -160,7 +160,7 @@ class App extends Component {
                 </div>
 
                 <div className="layout-main">
-                    <PrivateRoute path="/course" exact component={Course}/>
+                    <PrivateRoute path="/courses" exact component={Course}/>
                     <PrivateRoute path='/dashboard' exact component={Dashboard} />
                     <Route path="/login" exact component={Login} />
                 </div>

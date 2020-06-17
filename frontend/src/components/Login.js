@@ -2,6 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import {withRouter,Link} from "react-router-dom";
 import {Growl} from 'primereact/growl';
+import { loadProgressBar } from 'axios-progress-bar'
 import jwtDecode from 'jwt-decode';
 
 
@@ -19,10 +20,11 @@ class Login extends React.Component {
     }
 
     onClickHandler = e => {
+        loadProgressBar()
         axios.post('login',this.state)
             .then(({data}) => {
                 localStorage.setItem('token',data.token);
-                const check = jwtDecode(localStorage.getItem('token'));
+                const check = jwtDecode(localStorage.getItem('token'),{ header: true });
                 setTimeout(() => {
                     localStorage.removeItem('token');
                     this.props.history.push('/login')

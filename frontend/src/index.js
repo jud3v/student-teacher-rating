@@ -14,9 +14,9 @@ if (localStorage.getItem('token')) {
     if (exp < dateNow / 1000) {
         localStorage.removeItem('token');
     } else {
-      setTimeout(() => {
+        setTimeout(() => {
         localStorage.removeItem('token')
-      }, exp - dateNow / 1000);
+      }, exp * 1000 - dateNow);
     }
 }
 
