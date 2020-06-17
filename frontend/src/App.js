@@ -19,6 +19,8 @@ import '@fullcalendar/daygrid/main.css';
 import '@fullcalendar/timegrid/main.css';
 import './layout/layout.scss';
 import './App.scss';
+import Languages from "./components/Languages";
+import Exercises from "./components/Exercises";
 
 class App extends Component {
 
@@ -94,7 +96,8 @@ class App extends Component {
                 label: 'Learning', icon: 'pi pi-fw pi-cog',
                 items: [
                     {label: 'Courses', icon: 'pi pi-fw pi-bars',  to: '/courses' },
-                    {label: 'Exercises', icon: 'pi pi-fw pi-bars',  command: () => this.setState({layoutMode: 'overlay'}) }
+                    {label: 'Languages', icon: 'pi pi-fw pi-bars',  to: '/languages' },
+                    {label: 'Exercises', icon: 'pi pi-fw pi-bars',  to: '/exercises' }
                 ]
             },
             {
@@ -162,6 +165,8 @@ class App extends Component {
                 <div className="layout-main">
                     <PrivateRoute path="/courses" exact component={Course}/>
                     <PrivateRoute path='/dashboard' exact component={Dashboard} />
+                    <PrivateRoute path='/languages' exact component={Languages} />
+                    <PrivateRoute path='/exercises' exact component={Exercises} />
                     <Route path="/login" exact component={Login} />
                 </div>
 
