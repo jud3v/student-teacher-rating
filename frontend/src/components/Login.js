@@ -24,7 +24,6 @@ class Login extends React.Component {
         axios.post('login',this.state)
             .then(({data}) => {
                 localStorage.setItem('token',data.token);
-                const check = jwtDecode(localStorage.getItem('token'),{ header: true });
                 setTimeout(() => {
                     localStorage.removeItem('token');
                     this.props.history.push('/login')

@@ -24,9 +24,17 @@ class CourseController extends Controller
      */
     public function index()
     {
-        return HttpUtils::sendSuccessResponse('',$this->repository->findAll());
+        $claims = jwtDecodeToken();
+        $data = [];
+        if (!$claims['is_student']){
+            //teacher
+            $data = $this->repository->findCourses($claims['id'],$claims['is_student'],true);
+        } else {
+            //student
+            $data = $this->repository->findCourses($claims['id'],$claims['is_student'],false);
+        }
+        return HttpUtils::sendSuccessResponse('', $data);
     }
-
 
     /**
      * Store a newly created resource in storage.
@@ -37,6 +45,8 @@ class CourseController extends Controller
     public function store(Request $request)
     {
         $data = $request->all();
+        $claims = jwtDecodeToken();
+        $data['waiting_for_approval'] = $claims['is_student'];
         $this->repository->create($data);
         return HttpUtils::sendSuccessResponse('resource created');
     }
@@ -51,8 +61,6 @@ class CourseController extends Controller
     {
         return HttpUtils::sendSuccessResponse('',$this->repository->find($id));
     }
-
-
 
     /**
      * Update the specified resource in storage.

@@ -3,6 +3,7 @@ import { loadProgressBar } from "axios-progress-bar";
 import axios from 'axios'
 import {DataTable} from 'primereact/datatable';
 import {Column} from "primereact/column";
+import {FullCalendar} from 'primereact/fullcalendar';
 
 export default class Course extends React.Component {
 
@@ -12,7 +13,7 @@ export default class Course extends React.Component {
 
     componentDidMount() {
         loadProgressBar()
-        axios.get('courses?token='+localStorage.getItem('token'))
+        axios.get('courses')
             .then(({data}) => {
                 console.log(data.data)
                 this.setState({courses: data.data})

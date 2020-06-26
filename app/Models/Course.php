@@ -12,6 +12,7 @@ class Course extends Model
       'is_done',
       'teacher_id',
       'student_id',
+       'waiting_for_approval',
     ];
 
     protected $dates = ['created_at','updated_at'];

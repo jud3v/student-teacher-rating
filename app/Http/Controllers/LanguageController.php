@@ -38,8 +38,8 @@ class LanguageController extends Controller
     public function store(Request $request)
     {
         $data = $request->all();
-        $this->repository->create($data);
-        return HttpUtils::sendSuccessResponse('resource created');
+        $language = $this->repository->create($data);
+        return HttpUtils::sendSuccessResponse('resource created',$language);
     }
 
     /**
