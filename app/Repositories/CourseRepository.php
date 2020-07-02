@@ -23,7 +23,7 @@ class CourseRepository extends AbstractRepository
         ->join('users','users.id','=',"courses.$column")
         ->where("courses.$verifyIfIsStudent",'=', $id)
         ->where('waiting_for_approval','=',$waiting)
-        ->select(['meeting_date','is_done',$column,'name'])
+        ->select([DB::raw('date_add(meeting_date,interval 1 HOUR) as end'),'courses.id','meeting_date','is_done',$column,'name'])
         ->get();
     }
 

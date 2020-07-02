@@ -28,7 +28,8 @@ class CourseController extends Controller
         $data = [];
         if (!$claims['is_student']){
             //teacher
-            $data = $this->repository->findCourses($claims['id'],$claims['is_student'],true);
+            $data['waiting'] = $this->repository->findCourses($claims['id'],$claims['is_student'],true);
+            $data['confirmed'] = $this->repository->findCourses($claims['id'],$claims['is_student'],false);
         } else {
             //student
             $data = $this->repository->findCourses($claims['id'],$claims['is_student'],false);
